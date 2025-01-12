@@ -76,7 +76,7 @@ function handleRTBRequest()
             "bidtype" => "CPM"
         ],
         [
-            "campaignname" => "Spring_Special_Offer",
+             "campaignname" => "Spring_Special_Offer",
             "advertiser" => "GreenTech",
             "code" => "Z9Y8X7W6V5U4T3S2",
             "appid" => "20250401123027",
@@ -99,14 +99,13 @@ function handleRTBRequest()
     if (!$isValid) {
         http_response_code(400); 
         echo json_encode(["error" => $error]);
-        return;
     }
 
     $selectedCampaign = selectBestCampaign($bidRequest, $campaigns);
 
     if (!$selectedCampaign) {
-        http_response_code(204); // No Content
-        return;
+        http_response_code(204); 
+
     }
 
     $response = [
@@ -129,6 +128,7 @@ function handleRTBRequest()
     ];
 
     http_response_code(200);
+   
     echo json_encode($response);
 }
 
