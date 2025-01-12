@@ -23,9 +23,10 @@ function selectBestCampaign($bidRequest, $campaigns)
     $highestPrice = 0;
 
     foreach ($campaigns as $campaign) {
-        // Check if the OS and country match the bid request
+
+
         if (
-                 (strpos($campaign['hs_os'], $bidRequest['device']['os']) !== false || $campaign['hs_os'] === 'No Filter') &&
+                  (strpos($campaign['hs_os'], $bidRequest['device']['os']) !== false || $campaign['hs_os'] === 'No Filter') &&
             (strtolower($campaign['country']) === strtolower($bidRequest['device']['geo']['country']) || !$campaign['country']) &&
             ($campaign['price'] >=  $bidRequest ['imp'][0]['bidfloor'])
         ) {
@@ -96,7 +97,7 @@ function handleRTBRequest()
 
     list($isValid, $error) = validateRequest($bidRequest);
     if (!$isValid) {
-        http_response_code(400); // Bad Request
+        http_response_code(400); 
         echo json_encode(["error" => $error]);
         return;
     }
